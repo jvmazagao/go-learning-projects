@@ -32,28 +32,28 @@ package main
 import "fmt"
 
 type Person struct {
-    name  string
-    age   int
-    email string
+	name  string
+	age   int
+	email string
 }
 
 func (p Person) greetings() string {
-    return "Greetings " + p.name
+	return "Greetings " + p.name
 }
 
 func (p *Person) HaveBirthday() {
-    p.age = p.age + 1
+	p.age = p.age + 1
 }
 
 func NewPerson(name string, age int, email string) *Person {
-    return &Person{name, age, email}
+	return &Person{name, age, email}
 }
 
 func main() {
-    person := NewPerson("jhon", 10, "jvmazagao@gmail.com")
-    fmt.Println(person.greetings())
-    person.HaveBirthday()
-    fmt.Println(person.age)
+	person := NewPerson("jhon", 10, "jvmazagao@gmail.com")
+	fmt.Println(person.greetings())
+	person.HaveBirthday()
+	fmt.Println(person.age)
 }
 ```
 
@@ -70,9 +70,9 @@ func main() {
 ### 1. Struct Definition
 ```go
 type Person struct {
-    name  string
-    age   int
-    email string
+	name  string
+	age   int
+	email string
 }
 ```
 - Defines a custom data type with multiple fields
@@ -81,7 +81,7 @@ type Person struct {
 ### 2. Value Receiver Methods
 ```go
 func (p Person) greetings() string {
-    return "Greetings " + p.name
+	return "Greetings " + p.name
 }
 ```
 - Method receives a copy of the struct
@@ -91,7 +91,7 @@ func (p Person) greetings() string {
 ### 3. Pointer Receiver Methods
 ```go
 func (p *Person) HaveBirthday() {
-    p.age = p.age + 1
+	p.age = p.age + 1
 }
 ```
 - Method receives a pointer to the struct
@@ -101,7 +101,7 @@ func (p *Person) HaveBirthday() {
 ### 4. Constructor Function
 ```go
 func NewPerson(name string, age int, email string) *Person {
-    return &Person{name, age, email}
+	return &Person{name, age, email}
 }
 ```
 - Factory function to create new instances
@@ -147,7 +147,7 @@ Greetings jhon
 
 **Explanation**:
 - First line: Output from the `greetings()` method
-- Second line: Age after calling `HaveBirthday()` method
+- Second line: Age after calling `HaveBirthday()` method (10 + 1 = 11)
 
 ## 🎓 Learning Objectives
 

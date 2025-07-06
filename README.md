@@ -11,6 +11,8 @@ A comprehensive collection of Go programming projects designed for learning and 
    - [Calculator](#calculator)
    - [Structs](#structs)
    - [Composition](#composition)
+   - [Interfaces](#interfaces)
+   - [Player-Recorder](#player-recorder)
 3. [Prerequisites](#prerequisites)
 4. [Getting Started](#getting-started)
 5. [Project Structure](#project-structure)
@@ -48,9 +50,10 @@ Demonstrates different variable declaration techniques in Go:
 - Explicit type declaration
 - Variable initialization
 - Multiple variable declaration
-- Zero value behavior
+- Type inference with `:=`
+- Different data types
 
-**Key Learning**: Go's type system, variable declaration syntax, and zero values.
+**Key Learning**: Go's type system, variable declaration syntax, and type inference.
 
 [📖 View Variables Project](variables/README.md)
 
@@ -93,6 +96,32 @@ Advanced struct composition and embedding concepts:
 
 [📖 View Composition Project](composition/README.md)
 
+### Interfaces
+**Directory**: `/interfaces` | **Difficulty**: ⭐⭐⭐ Advanced
+
+Demonstrates interfaces, type assertions, and polymorphism in Go:
+- Interface definition and implementation
+- Type assertions and type switches
+- Polymorphic behavior
+- Empty interfaces
+
+**Key Learning**: Interfaces, polymorphism, and flexible code design in Go.
+
+[📖 View Interfaces Project](interfaces/README.md)
+
+### Player-Recorder
+**Directory**: `/player-recorder` | **Difficulty**: ⭐⭐⭐⭐ Expert
+
+Advanced interface composition and complex interface hierarchies:
+- Interface composition and embedding
+- Type assertions and interface capabilities
+- Interface segregation principles
+- Complex polymorphic behavior
+
+**Key Learning**: Advanced interface design patterns and real-world interface usage.
+
+[📖 View Player-Recorder Project](player-recorder/README.md)
+
 ## 🔧 Prerequisites
 
 Before you begin, ensure you have the following installed:
@@ -122,7 +151,7 @@ You should see output similar to: `go version go1.21.0 darwin/amd64`
 ### 3. Navigate to a Project
 
 ```bash
-cd hello-world    # or variables, calculator, structs, composition
+cd hello-world    # or variables, calculator, structs, composition, interfaces, player-recorder
 ```
 
 ### 4. Run the Project
@@ -151,9 +180,15 @@ go-learn/
 ├── structs/              # Structs and methods
 │   ├── README.md
 │   └── person.go
-└── composition/          # Struct composition
+├── composition/          # Struct composition
+│   ├── README.md
+│   └── employee.go
+├── interfaces/           # Interfaces and polymorphism
+│   ├── README.md
+│   └── interfaces.go
+└── player-recorder/      # Advanced interface composition
     ├── README.md
-    └── employee.go
+    └── recorder.go
 ```
 
 ## 🎓 Learning Path
@@ -165,6 +200,8 @@ The projects are designed to be completed in order for optimal learning:
 3. **⭐⭐ Calculator** - Apply concepts to build a functional program with error handling
 4. **⭐⭐ Structs** - Learn object-oriented concepts with structs and methods
 5. **⭐⭐⭐ Composition** - Master advanced composition and embedding patterns
+6. **⭐⭐⭐ Interfaces** - Understand interfaces, polymorphism, and flexible design
+7. **⭐⭐⭐⭐ Player-Recorder** - Master advanced interface composition and design patterns
 
 ### Recommended Learning Order
 
@@ -183,6 +220,12 @@ cd ../structs && go run person.go
 
 # Master composition patterns
 cd ../composition && go run employee.go
+
+# Understand interfaces and polymorphism
+cd ../interfaces && go run interfaces.go
+
+# Master advanced interface composition
+cd ../player-recorder && go run recorder.go
 ```
 
 ## 🧪 Testing

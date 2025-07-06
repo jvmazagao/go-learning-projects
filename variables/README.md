@@ -22,7 +22,8 @@ This project showcases various variable declaration techniques in Go, including:
 - Explicit type declaration
 - Variable initialization
 - Multiple variable declaration
-- Zero value behavior
+- Type inference with `:=`
+- Different data types
 
 Understanding variables is fundamental to Go programming and this project provides hands-on experience with different declaration methods.
 
@@ -38,46 +39,67 @@ package main
 import "fmt"
 
 func main() {
-    var age int = 27
-    var name string
-    var x, y int = 10, 10
+	var age int = 27
+	var name string = "John"
+	var x, y int = 10, 10
+	pi := 3.14
+	lastName := "Doe"
+	isTrue := true
 
-    fmt.Println(age)
-    fmt.Println(name)
-    fmt.Println(x, y)
+	fmt.Println(age)
+	fmt.Println(name, lastName)
+	fmt.Println(x, y)
+	fmt.Println(pi)
+	fmt.Println(isTrue)
+	fmt.Printf("pi is type: %T\n", pi)
 }
 ```
 
 ### Code Explanation
 
 - **`var age int = 27`**: Declares an integer variable with explicit type and initial value
-- **`var name string`**: Declares a string variable without initialization (gets zero value)
+- **`var name string = "John"`**: Declares a string variable with initialization
 - **`var x, y int = 10, 10`**: Declares multiple variables of the same type in one statement
-- **`fmt.Println()`**: Prints each variable to see their values
+- **`pi := 3.14`**: Type inference with `:=` for float64
+- **`lastName := "Doe"`**: Type inference for string
+- **`isTrue := true`**: Type inference for boolean
+- **`fmt.Printf("pi is type: %T\n", pi)`**: Shows the type of a variable
 
 ## 📝 Variable Declaration Examples
 
 ### 1. Explicit Type Declaration with Initialization
 ```go
 var age int = 27
+var name string = "John"
 ```
-- Declares an integer variable `age` with explicit type and initial value
+- Declares variables with explicit type and initial value
 - The `int` type can store whole numbers (positive, negative, or zero)
+- The `string` type stores text data
 
-### 2. Zero Value Declaration
-```go
-var name string
-```
-- Declares a string variable `name` without initialization
-- Go automatically assigns the zero value (empty string `""`)
-- This is a key feature of Go's type system
-
-### 3. Multiple Variable Declaration
+### 2. Multiple Variable Declaration
 ```go
 var x, y int = 10, 10
 ```
 - Declares multiple variables of the same type in a single statement
 - Both `x` and `y` are initialized to `10`
+
+### 3. Type Inference with `:=`
+```go
+pi := 3.14
+lastName := "Doe"
+isTrue := true
+```
+- Go automatically infers the type based on the value
+- `pi` becomes `float64`
+- `lastName` becomes `string`
+- `isTrue` becomes `bool`
+
+### 4. Type Information
+```go
+fmt.Printf("pi is type: %T\n", pi)
+```
+- Uses `%T` format verb to print the type of a variable
+- Useful for debugging and understanding type inference
 
 ## 🚀 How to Run
 
@@ -113,11 +135,20 @@ var x, y int = 10, 10
 
 ```
 27
-
+John Doe
 10 10
+3.14
+true
+pi is type: float64
 ```
 
-**Note**: The empty line represents the zero value of the string variable `name` (an empty string).
+**Explanation**:
+- First line: Integer value `27`
+- Second line: String values `"John"` and `"Doe"` concatenated
+- Third line: Multiple integers `10` and `10`
+- Fourth line: Float value `3.14`
+- Fifth line: Boolean value `true`
+- Sixth line: Type information showing `pi` is `float64`
 
 ## 🎓 Learning Objectives
 
@@ -125,9 +156,10 @@ By completing this project, you will understand:
 
 - ✅ **Variable declaration syntax** - Different ways to declare variables in Go
 - ✅ **Type system basics** - How Go's static typing works
-- ✅ **Zero values** - What happens when variables aren't initialized
+- ✅ **Type inference** - How Go automatically determines types
 - ✅ **Multiple declarations** - How to declare multiple variables efficiently
 - ✅ **Type safety** - How Go prevents type-related errors
+- ✅ **Type information** - How to inspect variable types at runtime
 
 ## 🔢 Go Zero Values
 
@@ -169,7 +201,6 @@ After understanding variables, explore:
 
 ### Immediate Next Steps
 - **Constants** - Learn about immutable values
-- **Type inference with `:=`** - Shorter variable declaration syntax
 - **Variable scope** - Understanding where variables are accessible
 - **Type conversions** - Converting between different types
 
@@ -203,11 +234,16 @@ After understanding variables, explore:
 - Avoid reserved keywords
 - Be descriptive but concise
 
-### Type Inference
+### Type Inference Rules
 ```go
 // These are equivalent:
 var age int = 27
 age := 27  // Type is inferred as int
+
+// Type inference examples:
+pi := 3.14        // float64
+name := "John"    // string
+isActive := true  // bool
 ```
 
 ### Block Declaration

@@ -161,21 +161,21 @@ Performs the specified operation (`+`, `-`, `*`, `/`) on the two numbers provide
 
 ```go
 func Calculator(a int, b int, operation string) int {
-    switch operation {
-    case "+":
-        return a + b
-    case "-":
-        return a - b
-    case "*":
-        return a * b
-    case "/":
-        if b == 0 {
-            panic("division by zero")
-        }
-        return a / b
-    default:
-        panic("operation not permitted")
-    }
+	switch operation {
+	case "+":
+		return a + b
+	case "-":
+		return a - b
+	case "*":
+		return a * b
+	case "/":
+		if b == 0 {
+			panic("division by zero")
+		}
+		return a / b
+	default:
+		panic("operation not permitted")
+	}
 }
 ```
 
@@ -189,11 +189,11 @@ Converts a string to an integer with error handling.
 
 ```go
 func ConvertNumber(num string) int {
-    res, err := strconv.Atoi(num)
-    if err != nil {
-        panic("failed to convert number")
-    }
-    return res
+	res, err := strconv.Atoi(num)
+	if err != nil {
+		panic("failed to convert number")
+	}
+	return res
 }
 ```
 
@@ -207,10 +207,10 @@ A global error handler that recovers from panics and provides user-friendly erro
 
 ```go
 func GlobalErrorHandler() {
-    if r := recover(); r != nil {
-        fmt.Fprintln(os.Stderr, "💥 Error:", r)
-        os.Exit(1)
-    }
+	if r := recover(); r != nil {
+		fmt.Fprintln(os.Stderr, "💥 Error:", r)
+		os.Exit(1)
+	}
 }
 ```
 
@@ -224,19 +224,19 @@ The entry point that orchestrates the entire program.
 
 ```go
 func main() {
-    defer GlobalErrorHandler()
+	defer GlobalErrorHandler()
 
-    if len(os.Args) < 4 {
-        panic("Please provide a number")
-    }
+	if len(os.Args) < 4 {
+		panic("Please provide a number")
+	}
 
-    num1 := ConvertNumber(os.Args[1])
-    num2 := ConvertNumber(os.Args[3])
-    operator := os.Args[2]
+	num1 := ConvertNumber(os.Args[1])
+	num2 := ConvertNumber(os.Args[3])
+	operator := os.Args[2]
 
-    result := Calculator(num1, num2, operator)
+	result := Calculator(num1, num2, operator)
 
-    fmt.Printf("The result from (%d %s %d) is %d \n", num1, operator, num2, result)
+	fmt.Printf("The result from (%d %s %d) is %d \n", num1, operator, num2, result)
 }
 ```
 
@@ -302,6 +302,7 @@ After mastering this calculator, explore:
 ### Related Projects in This Repository
 1. **[Hello World Project](../hello-world/README.md)** - Basic Go syntax (prerequisite)
 2. **[Variables Project](../variables/README.md)** - Variable handling (prerequisite)
+3. **[Structs Project](../structs/README.md)** - Object-oriented concepts
 
 ### Additional Learning Resources
 - [Go Tour - Methods](https://tour.golang.org/methods/1)

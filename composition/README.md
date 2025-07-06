@@ -32,44 +32,44 @@ package main
 import "fmt"
 
 type Address struct {
-    street string
-    city   string
+	street string
+	city   string
 }
 
 type Person struct {
-    Address
-    name  string
-    age   int
-    email string
+	Address
+	name  string
+	age   int
+	email string
 }
 
 func (p Person) Greetings() string {
-    return fmt.Sprintf("Greetings %s", p.name)
+	return fmt.Sprintf("Greetings %s", p.name)
 }
 
 func NewPerson(name string, age int, email string) *Person {
-    return &Person{Address{"bla", "ble"}, name, age, email}
+	return &Person{Address{"bla", "ble"}, name, age, email}
 }
 
 type Employee struct {
-    Person
-    jobTitle    string
-    salary      float32
-    workAddress Address
+	Person
+	jobTitle    string
+	salary      float32
+	workAddress Address
 }
 
 func (e Employee) Greetings() string {
-    return fmt.Sprintf("Hello, I'm %s and I work as a %s", e.name, e.jobTitle)
+	return fmt.Sprintf("Hello, I'm %s and I work as a %s", e.name, e.jobTitle)
 }
 
 func main() {
-    employee := Employee{
-        Person:   *NewPerson("jhon", 31, "jhon@gmail.com"),
-        jobTitle: "master",
-        salary:   100.00,
-    }
-    fmt.Println(employee.Greetings())
-    fmt.Println(employee.Person.Greetings())
+	employee := Employee{
+		Person:   *NewPerson("jhon", 31, "jhon@gmail.com"),
+		jobTitle: "master",
+		salary:   100.00,
+	}
+	fmt.Println(employee.Greetings())
+	fmt.Println(employee.Person.Greetings())
 }
 ```
 
@@ -86,10 +86,10 @@ func main() {
 ### 1. Struct Embedding
 ```go
 type Person struct {
-    Address  // Embedded struct (composition)
-    name  string
-    age   int
-    email string
+	Address  // Embedded struct (composition)
+	name  string
+	age   int
+	email string
 }
 ```
 - `Address` is embedded directly (no field name)
@@ -109,11 +109,11 @@ fmt.Println(person.city)    // Access embedded field directly
 ### 3. Method Overriding
 ```go
 func (p Person) Greetings() string {
-    return fmt.Sprintf("Greetings %s", p.name)
+	return fmt.Sprintf("Greetings %s", p.name)
 }
 
 func (e Employee) Greetings() string {
-    return fmt.Sprintf("Hello, I'm %s and I work as a %s", e.name, e.jobTitle)
+	return fmt.Sprintf("Hello, I'm %s and I work as a %s", e.name, e.jobTitle)
 }
 ```
 - `Employee.Greetings()` overrides `Person.Greetings()`
@@ -122,10 +122,10 @@ func (e Employee) Greetings() string {
 ### 4. Multiple Embedding
 ```go
 type Employee struct {
-    Person        // Embedded Person (includes Address)
-    jobTitle    string
-    salary      float32
-    workAddress Address  // Separate Address field
+	Person        // Embedded Person (includes Address)
+	jobTitle    string
+	salary      float32
+	workAddress Address  // Separate Address field
 }
 ```
 - `Employee` embeds `Person` (which embeds `Address`)
@@ -245,8 +245,8 @@ After understanding composition, explore:
 
 ```go
 type Employee struct {
-    Person
-    workAddress Address
+	Person
+	workAddress Address
 }
 
 employee := Employee{...}
