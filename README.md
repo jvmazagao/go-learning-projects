@@ -8,6 +8,11 @@ A comprehensive collection of Go programming projects designed for learning and 
 2. [Projects](#projects)
    - [Hello World](#hello-world)
    - [Variables](#variables)
+   - [Defer](#defer)
+   - [Error Handling](#error-handling)
+   - [Slices](#slices)
+   - [Maps](#maps)
+   - [Pointers](#pointers)
    - [Calculator](#calculator)
    - [Structs](#structs)
    - [Composition](#composition)
@@ -56,6 +61,71 @@ Demonstrates different variable declaration techniques in Go:
 **Key Learning**: Go's type system, variable declaration syntax, and type inference.
 
 [📖 View Variables Project](variables/README.md)
+
+### Defer
+**Directory**: `/defer` | **Difficulty**: ⭐⭐ Intermediate
+
+Demonstrates the `defer` statement in Go for resource cleanup:
+- Defer statement usage
+- LIFO execution order
+- Resource cleanup patterns
+- Function scope and lifetime
+
+**Key Learning**: Defer statements, resource management, and cleanup patterns in Go.
+
+[📖 View Defer Project](defer/README.md)
+
+### Error Handling
+**Directory**: `/error-handling` | **Difficulty**: ⭐⭐ Intermediate
+
+Demonstrates Go's explicit error handling patterns:
+- Error creation and return
+- Error checking patterns
+- Multiple return values
+- Error handling best practices
+
+**Key Learning**: Go's error philosophy, explicit error handling, and robust program design.
+
+[📖 View Error Handling Project](error-handling/README.md)
+
+### Slices
+**Directory**: `/slices` | **Difficulty**: ⭐⭐ Intermediate
+
+Demonstrates Go's dynamic slice data structure:
+- Slice declaration and initialization
+- Slice operations (append, copy, slicing)
+- Capacity and length management
+- Slice internals and memory management
+
+**Key Learning**: Dynamic data structures, slice operations, and memory efficiency in Go.
+
+[📖 View Slices Project](slices/README.md)
+
+### Maps
+**Directory**: `/maps` | **Difficulty**: ⭐⭐ Intermediate
+
+Demonstrates Go's map data structure for key-value pairs:
+- Map declaration and initialization
+- Map operations (insert, update, delete, lookup)
+- Map iteration and safe access
+- Practical applications (word counting)
+
+**Key Learning**: Associative data structures, map operations, and efficient key-value storage.
+
+[📖 View Maps Project](maps/README.md)
+
+### Pointers
+**Directory**: `/pointers` | **Difficulty**: ⭐⭐ Intermediate
+
+Demonstrates Go's pointer system for memory management:
+- Pointer declaration and dereferencing
+- Passing by value vs passing by reference
+- Pointer safety and nil handling
+- Pointer receivers in methods
+
+**Key Learning**: Memory management, pointer operations, and efficient data manipulation in Go.
+
+[📖 View Pointers Project](pointers/README.md)
 
 ### Calculator
 **Directory**: `/calculator` | **Difficulty**: ⭐⭐ Intermediate
@@ -172,6 +242,23 @@ go-learn/
 ├── variables/            # Variable examples
 │   ├── README.md
 │   └── variables.go
+├── defer/               # Defer statements
+│   ├── README.md
+│   └── main.go
+├── error-handling/      # Error handling patterns
+│   ├── README.md
+│   └── main.go
+├── slices/              # Slice data structure
+│   ├── README.md
+│   └── slices.go
+├── maps/                # Map data structure
+│   ├── README.md
+│   ├── maps.go
+│   └── count-words/     # Practical map application
+│       └── main.go
+├── pointers/            # Pointer operations
+│   ├── README.md
+│   └── pointers.go
 ├── calculator/           # Command-line calculator
 │   ├── README.md
 │   ├── calculator.go
@@ -197,11 +284,16 @@ The projects are designed to be completed in order for optimal learning:
 
 1. **⭐ Hello World** - Learn basic Go syntax and program structure
 2. **⭐ Variables** - Understand Go's type system and variable declaration
-3. **⭐⭐ Calculator** - Apply concepts to build a functional program with error handling
-4. **⭐⭐ Structs** - Learn object-oriented concepts with structs and methods
-5. **⭐⭐⭐ Composition** - Master advanced composition and embedding patterns
-6. **⭐⭐⭐ Interfaces** - Understand interfaces, polymorphism, and flexible design
-7. **⭐⭐⭐⭐ Player-Recorder** - Master advanced interface composition and design patterns
+3. **⭐⭐ Defer** - Learn resource cleanup and defer statements
+4. **⭐⭐ Error Handling** - Master Go's explicit error handling patterns
+5. **⭐⭐ Slices** - Understand dynamic data structures and memory management
+6. **⭐⭐ Maps** - Learn associative data structures and key-value operations
+7. **⭐⭐ Pointers** - Master memory management and reference semantics
+8. **⭐⭐ Calculator** - Apply concepts to build a functional program with error handling
+9. **⭐⭐ Structs** - Learn object-oriented concepts with structs and methods
+10. **⭐⭐⭐ Composition** - Master advanced composition and embedding patterns
+11. **⭐⭐⭐ Interfaces** - Understand interfaces, polymorphism, and flexible design
+12. **⭐⭐⭐⭐ Player-Recorder** - Master advanced interface composition and design patterns
 
 ### Recommended Learning Order
 
@@ -211,6 +303,22 @@ cd hello-world && go run hello.go
 
 # Learn about variables
 cd ../variables && go run variables.go
+
+# Understand defer statements
+cd ../defer && go run main.go
+
+# Master error handling
+cd ../error-handling && go run main.go
+
+# Explore dynamic data structures
+cd ../slices && go run slices.go
+
+# Learn associative data structures
+cd ../maps && go run maps.go
+cd maps/count-words && go run main.go
+
+# Master memory management
+cd ../pointers && go run pointers.go
 
 # Build something practical
 cd ../calculator && go run calculator.go 5 + 3
