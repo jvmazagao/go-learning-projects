@@ -2,11 +2,22 @@ package src
 
 import (
 	"fmt"
-	"time"
 )
 
+type Banking interface {
+	Deposit(t Transaction)
+	Withdraw(t Transaction)
+}
+
 type Bank struct {
-	accounts map[string]*Account
+	accounts    map[string]*Account
+	transaction []Transaction
+}
+
+func NewBank() Bank {
+	return Bank{
+		accounts: make(map[string]*Account),
+	}
 }
 
 func (b Bank) CreateAccount(id string, account Account) {
@@ -22,35 +33,24 @@ func (b Bank) GetAccount(id string) (Account, error) {
 }
 
 func (b Bank) Transfer(from string, to string, amount float32) error {
-	fromAccount, err := b.GetAccount(from)
+	transfer := NewTransferTransaction(amount, from, to)
+	fromAccount, err := b.GetAccount(transfer.from)
 	if err != nil {
 		return fmt.Errorf("Account %s not foud.", from)
 	}
 
-	toAccount, err := b.GetAccount(to)
+	toAccount, err := b.GetAccount(transfer.to)
 	if err != nil {
 		return fmt.Errorf("Account %s not found.", to)
 	}
 
-	err = fromAccount.Withdraw(Transaction{
-		amount:    amount,
-		timestamp: time.Now(),
-		from:      from,
-		to:        to,
-		operation: "WITHDRAW",
-	})
+	err = fromAccount.Withdraw(WithdrawTransaction(transfer.amount))
 
 	if err != nil {
 		return err
 	}
 
-	toAccount.Deposit(Transaction{
-		amount:    amount,
-		timestamp: time.Now(),
-		from:      from,
-		to:        to,
-		operation: "DEPOSIT",
-	})
+	toAccount.Deposit(DepositTransaction(amount))
 
 	return nil
 }

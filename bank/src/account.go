@@ -9,6 +9,15 @@ type Account struct {
 	transactions []Transaction
 }
 
+func NewAccount(id string, owner string) Account {
+	return Account{
+		ID:           id,
+		owner:        owner,
+		balance:      0,
+		transactions: make([]Transaction, 0),
+	}
+}
+
 func (d Account) Deposit(transaction Transaction) error {
 	d.balance += transaction.amount
 	d.transactions = append(d.transactions, transaction)
