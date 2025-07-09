@@ -20,31 +20,32 @@ func NewBank() Bank {
 	}
 }
 
-func (b Bank) CreateAccount(id string, account Account) {
-	b.accounts[id] = &account
+func (b *Bank) CreateAccount(id string, account *Account) {
+	b.accounts[id] = account
 }
 
-func (b Bank) GetAccount(id string) (Account, error) {
+func (b *Bank) GetAccount(id string) (*Account, error) {
 	account, exists := b.accounts[id]
 	if exists {
-		return *account, nil
+		return account, nil
 	}
-	return Account{}, fmt.Errorf("Account %s not found.", id)
+	return &Account{}, fmt.Errorf("Account %s not found.", id)
 }
 
-func (b Bank) Transfer(from string, to string, amount float32) error {
+func (b *Bank) Transfer(from string, to string, amount float32) error {
 	transfer := NewTransferTransaction(amount, from, to)
 	fromAccount, err := b.GetAccount(transfer.from)
 	if err != nil {
-		return fmt.Errorf("Account %s not foud.", from)
+		return err
+	}
+
+	err = fromAccount.Withdraw(WithdrawTransaction(transfer.Amount))
+
+	if err != nil {
+		return err
 	}
 
 	toAccount, err := b.GetAccount(transfer.to)
-	if err != nil {
-		return fmt.Errorf("Account %s not found.", to)
-	}
-
-	err = fromAccount.Withdraw(WithdrawTransaction(transfer.amount))
 
 	if err != nil {
 		return err

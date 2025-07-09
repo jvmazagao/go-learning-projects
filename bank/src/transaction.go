@@ -4,7 +4,7 @@ import "time"
 
 type Transaction struct {
 	identifier string
-	amount     float32
+	Amount     float32
 	timestamp  time.Time
 	// TODO create operations enum
 	operation string
@@ -18,7 +18,7 @@ type TranferTransaction struct {
 
 func newTransaction(amount float32, operation string) Transaction {
 	return Transaction{
-		amount:    amount,
+		Amount:    amount,
 		operation: operation,
 		timestamp: time.Now(),
 	}
