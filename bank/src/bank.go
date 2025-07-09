@@ -20,8 +20,8 @@ func NewBank() Bank {
 	}
 }
 
-func (b *Bank) CreateAccount(id string, account *Account) {
-	b.accounts[id] = account
+func (b *Bank) CreateAccount(id string, account Account) {
+	b.accounts[id] = &account
 }
 
 func (b *Bank) GetAccount(id string) (*Account, error) {

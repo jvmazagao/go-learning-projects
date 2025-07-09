@@ -9,11 +9,11 @@ type Account struct {
 	Transactions []Transaction
 }
 
-func NewAccount(id string, owner string) Account {
+func NewAccount(id string, owner string, balance float32) Account {
 	return Account{
 		ID:           id,
 		Owner:        owner,
-		Balance:      0,
+		Balance:      balance,
 		Transactions: make([]Transaction, 0),
 	}
 }

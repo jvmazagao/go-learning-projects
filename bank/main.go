@@ -6,27 +6,73 @@ import (
 )
 
 func main() {
+	fmt.Println("=== BANK SYSTEM TEST ===\n")
+
+	// Create bank
 	b := src.NewBank()
-	a_1 := src.NewAccount("1", "a_1")
-	a_2 := src.NewAccount("2", "a_2")
+	fmt.Println("✓ Bank created")
 
-	b.CreateAccount(a_1.ID, &a_1)
-	b.CreateAccount(a_2.ID, &a_2)
+	// Create accounts
+	acc1 := src.NewAccount("1", "Alice", 100.0)
+	acc2 := src.NewAccount("2", "Bob", 50.0)
 
-	deposit := src.DepositTransaction(100)
+	b.CreateAccount("1", acc1)
+	b.CreateAccount("2", acc2)
+	fmt.Println("✓ 2 accounts created")
 
-	a_1.Deposit(deposit)
-	a_2.Deposit(deposit)
+	// Check initial balances
+	fmt.Println("\n--- Initial Balances ---")
+	a1, err1 := b.GetAccount("1")
+	a2, err2 := b.GetAccount("2")
 
-	fmt.Println(a_1.GetBalance())
-	fmt.Println(a_2.GetBalance())
+	if err1 != nil || err2 != nil {
+		fmt.Println("ERROR: Could not get accounts")
+		return
+	}
 
-	b.Transfer(a_1.ID, a_2.ID, 50)
+	fmt.Printf("Alice: $%.2f\n", a1.Balance)
+	fmt.Printf("Bob:   $%.2f\n", a2.Balance)
 
-	a1, _ := b.GetAccount(a_1.ID)
-	a2, _ := b.GetAccount(a_2.ID)
+	// Test transfer
+	fmt.Println("\n--- Transfer $30 from Alice to Bob ---")
+	err := b.Transfer("1", "2", 30.0)
+	if err != nil {
+		fmt.Println("ERROR:", err)
+	} else {
+		fmt.Println("✓ Transfer successful")
+	}
 
-	fmt.Println(a1.GetBalance())
-	fmt.Println(a2.GetBalance())
+	// Check balances after transfer
+	fmt.Println("\n--- Balances After Transfer ---")
+	a1, _ = b.GetAccount("1")
+	a2, _ = b.GetAccount("2")
+	fmt.Printf("Alice: $%.2f (expected: $70.00)\n", a1.Balance)
+	fmt.Printf("Bob:   $%.2f (expected: $80.00)\n", a2.Balance)
 
+	// Test insufficient funds
+	fmt.Println("\n--- Test Insufficient Funds ---")
+	err = b.Transfer("1", "2", 100.0)
+	if err != nil {
+		fmt.Println("✓ Correctly rejected:", err)
+	} else {
+		fmt.Println("ERROR: Should have failed!")
+	}
+
+	// Test non-existent account
+	fmt.Println("\n--- Test Non-existent Account ---")
+	_, err = b.GetAccount("999")
+	if err != nil {
+		fmt.Println("✓ Correctly reported:", err)
+	} else {
+		fmt.Println("ERROR: Should have failed!")
+	}
+
+	// Final check
+	fmt.Println("\n--- Final State ---")
+	success := a1.Balance == 70.0 && a2.Balance == 80.0
+	if success {
+		fmt.Println("✅ ALL TESTS PASSED!")
+	} else {
+		fmt.Println("❌ BALANCE MISMATCH!")
+	}
 }
